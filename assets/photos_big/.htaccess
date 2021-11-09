@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(.*\.(gif|jp?g|png))$ http://demoweblinks.in/demo-mat/assets/photos_big/watermark.php?image=$1 [NC] 
