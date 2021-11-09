@@ -4,6 +4,7 @@ class Register_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('front_end/message_model');
 	}
 	
 	public function check_duplicate()
@@ -64,13 +65,15 @@ class Register_model extends CI_Model {
 		$this->form_validation->set_rules('password', 'Password', 'required');		
 		$this->form_validation->set_rules('firstname', 'First Name', 'required');
 		$this->form_validation->set_rules('lastname', 'Last Name', 'required');
+		$this->form_validation->set_rules('religion', 'Religion', 'required');
+		$this->form_validation->set_rules('caste', 'Caste', 'required');
+		$this->form_validation->set_rules('terms', 'Terms & Condition', 'required');
 		
-		
-		if($this->input->post('user_agent')!='NI-AAPP'){
-			$this->form_validation->set_rules('religion', 'Religion', 'required');
-			$this->form_validation->set_rules('caste', 'Caste', 'required');
-			$this->form_validation->set_rules('terms', 'Terms & Condition', 'required');
-		}
+		// if($this->input->post('user_agent')!='NI-AAPP'){
+		// 	$this->form_validation->set_rules('religion', 'Religion', 'required');
+		// 	$this->form_validation->set_rules('caste', 'Caste', 'required');
+		// 	$this->form_validation->set_rules('terms', 'Terms & Condition', 'required');
+		// }
 		
 		//$this->form_validation->set_rules('code_captcha', 'Captcha Code', 'callback_validate_captcha');
 		if ($this->form_validation->run() == FALSE)
@@ -121,10 +124,11 @@ class Register_model extends CI_Model {
 				if($count_email == 0 && $count_mobile == 0)
 				{
 					$_REQUEST['terms'] = (isset($_REQUEST['terms']) && $_REQUEST['terms']!='')?$_REQUEST['terms']:'';
-					if(isset($_REQUEST['birth_year']) && $_REQUEST['birth_month'] && $_REQUEST['birth_date'])
-					{					
-						$_REQUEST['birthdate'] = $_REQUEST['birth_year'].'-'.$_REQUEST['birth_month'].'-'.$_REQUEST['birth_date'];
-					}
+					//angular project doesnt need below birthdate setter
+					// if(isset($_REQUEST['birth_year']) && $_REQUEST['birth_month'] && $_REQUEST['birth_date'])
+					// {					
+					// 	$_REQUEST['birthdate'] = $_REQUEST['birth_year'].'-'.$_REQUEST['birth_month'].'-'.$_REQUEST['birth_date'];
+					// }
 					$_REQUEST['username'] = $_REQUEST['firstname'].' '.$_REQUEST['lastname'];
 					$_REQUEST['password'] = md5($_REQUEST['password']);
 					$this->common_model->created_on_fild = 'registered_on';
@@ -173,6 +177,9 @@ class Register_model extends CI_Model {
 						$contact_us = $web_name.'contact';
 						$premium_member = $web_name.'premium-member';
 						
+						//in app notifications
+		                $sendNotificationStatus = $this->message_model->send_notification("You have registered to Wedline Matrimony","Admin",$row_data["matri_id"]);
+
 						$get_email_template = $this->common_front_model->getemailtemplate('Registration');
 						$subject = $get_email_template['email_subject']; 
 						$email_content= $get_email_template['email_content'];
@@ -264,14 +271,14 @@ class Register_model extends CI_Model {
 	public function save_register_step($is_post = 0,$step='step1')
 	{
 		$insert_id = '';
-		if(isset($_REQUEST['user_agent']) && $_REQUEST['user_agent'] !='NI-WEB' && isset($_REQUEST['id']) && $_REQUEST['id'] != '')
-		{
-			$insert_id = $_REQUEST['id'];
-		}
-		else
-		{	
+		// if(isset($_REQUEST['user_agent']) && $_REQUEST['user_agent'] !='NI-WEB' && isset($_REQUEST['id']) && $_REQUEST['id'] != '')
+		// {
+		// 	$insert_id = $_REQUEST['id'];
+		// }
+		// else
+		// {	
 			$insert_id = $this->session->userdata('recent_reg_id');
-		}
+		// }
 		$data1['tocken'] = $this->security->get_csrf_hash();
 		$data1['status'] = 'error';
 		$temp_file_name = '';

@@ -15,7 +15,9 @@ class Message_model extends CI_Model {
 		$user_agent = $this->input->post('user_agent');
 		if(isset($user_agent) && ($user_agent =='NI-AAPP' || $user_agent =='NI-IAPP'))
 		{
-			$matri_id = $this->input->post('matri_id');
+			// $matri_id = $this->input->post('matri_id');
+			$matri_id = $this->common_front_model->get_user_id('matri_id');
+
 		}else{
 			$matri_id = $this->common_front_model->get_user_id('matri_id');
 		}
@@ -158,7 +160,7 @@ class Message_model extends CI_Model {
 		}
 		else
 		{
-			$error_message = 'Please select atleast one recourd, try again';
+			$error_message = 'Please select atleast one record, try again';
 		}
 		
 		$data1['tocken'] = $this->security->get_csrf_hash();
@@ -189,10 +191,15 @@ class Message_model extends CI_Model {
 	}
 	function get_message_list($post=0,$page='',$mode_exp='',$filter='Yes')
 	{
+		$needUnreadCount = "No";
 		$where_arra = array();
 		if($this->input->post('mode') !='' && $mode_exp =='')
 		{
 			$mode_exp = $this->input->post('mode');
+		}
+		if($this->input->post('nav') !='')
+		{
+			$needUnreadCount = $this->input->post('nav');
 		}
 		if($this->input->post('page_number') !='')
 		{
@@ -232,6 +239,11 @@ class Message_model extends CI_Model {
 			$where_arra=array('message.sender'=>$member_id,'message.trash_sender'=>'No','message.status'=>'draft');
 			//$this->db->join('search_register_view','message.receiver = search_register_view.matri_id ','left');
 		}
+		else if($mode_exp =='important')
+		{
+			$where_arra=array('message.receiver'=>$member_id,'message.trash_receiver'=>'No','message.important_status'=>'Yes');
+			//$this->db->join('search_register_view','message.receiver = search_register_view.matri_id ','left');
+		}
 		else if($mode_exp =='trash')
 		{
 			//$where_arra=array('message.receiver'=>$member_id,'message.trash_receiver'=>'No','message.status'=>'trash');
@@ -243,6 +255,11 @@ class Message_model extends CI_Model {
 		}
 		if($post == 0)
 		{	
+			if($needUnreadCount =='Yes')
+			{
+				$where_arra=array('message.receiver'=>$member_id,'message.trash_receiver'=>'No','message.read_status'=>'No','message.status'=>'sent');
+				//$this->db->join('search_register_view','message.receiver = search_register_view.matri_id ','left');
+			}
 			$data = $this->common_model->get_count_data_manual($this->table_name,$where_arra,0,'');
 		}
 		else
@@ -299,6 +316,59 @@ class Message_model extends CI_Model {
 						//$photo_data[0]['photo1'] = '';
 						$data[$key]['member_photo']=array();
 					}
+					
+				}
+			}
+		}
+		return $data;
+	}
+	function get_notification_list($post=0,$page='')
+	{
+		$needUnreadCount = "No";
+		$where_arra = array();
+		if($this->input->post('nav') !='')
+		{
+			$needUnreadCount = $this->input->post('nav');
+		}		
+		$member_id = $this->common_front_model->get_user_id('matri_id','matri_id');
+		$where_arra=array('notifications.receiver'=>$member_id,'notifications.is_deleted'=>'No');
+		
+		if($post == 0)
+		{	
+			if($needUnreadCount =='Yes')
+			{
+				$where_arra=array('notifications.receiver'=>$member_id,'notifications.is_deleted'=>'No','notifications.read_status'=>'No');
+			}
+			$data = $this->common_model->get_count_data_manual("notifications",$where_arra,0,'');
+		}
+		else
+		{
+			$data = $this->common_model->get_count_data_manual("notifications",$where_arra,2,'notifications.*','notifications.id desc',$page,10);
+
+			if(!empty($data))
+			{
+				foreach($data as $key=>$val)
+				{
+					$where_arras=$where_arra='';
+					$photo_data = array();
+					$data[$key]['member_photo']='';
+					if(isset($val['sender']) && $val['sender']!='Admin')
+					{
+						$where_arra=array('matri_id'=>$val['sender'],'is_deleted'=>'No');
+						$where_arras = array('photo_view_status','photo1_approve','photo1');
+						$photo_data = $this->common_model->get_count_data_manual('register',$where_arra,2,$where_arras,'','');
+						$photo_path = $this->common_model->path_photos;
+						$path = $this->common_front_model->base_url;
+						if(isset($photo_data[0]['photo1']) && $photo_data[0]['photo1']!='')
+						{	
+							$photo_data[0]['photo1'] = $path.$photo_path.$photo_data[0]['photo1'];
+							$data[$key]['member_photo']=$photo_data;
+						}
+						else 
+						{
+							$data[$key]['member_photo']=array();
+						}
+					}				
 					
 				}
 			}
@@ -663,6 +733,112 @@ class Message_model extends CI_Model {
 			</div>
 		</div>';
 		return $html;
+	}
+	function send_notification($message,$sender,$receiver)
+	{
+		$status = 'success';
+		if($receiver !='')
+		{						
+			if($message !='' && $receiver !='')
+			{
+				$sent_on = $this->common_model->getCurrentDate();					
+				$data_array_custom = array(
+					'sender'=>$sender,
+					'receiver'=>$receiver,
+					'content'=>$message,
+					'read_status'=>"No",
+					'sent_on'=>$sent_on,
+					'is_deleted'=>"No"
+				);
+				
+				$isSuccess = $this->common_front_model->save_update_data("notifications",$data_array_custom);
+				if(!$isSuccess){
+					$status = 'Oops! data insert error';
+				}
+			}
+			else
+			{
+				$status = "Please enter message and provide Receiver ID";
+			}
+		}
+		else
+		{  
+			$status = "Your session time out, Please Login First";
+		}	
+		
+		return $status;
+	}
+	function update_notification_action()
+	{
+		$mode_exp='';
+		$status = 'error';
+		$user_agent = $this->input->post('user_agent');
+		if(isset($user_agent) && ($user_agent =='NI-AAPP' || $user_agent =='NI-IAPP'))
+		{
+			// $matri_id = $this->input->post('matri_id');
+			$matri_id = $this->common_front_model->get_user_id('matri_id');
+
+		}else{
+			$matri_id = $this->common_front_model->get_user_id('matri_id');
+		}
+		
+		$selected_val = '';
+		if($this->input->post('selected_val') !='')
+		{
+			$selected_val = $this->input->post('selected_val');
+		}
+		if($this->input->post('mode') !='')
+		{
+			$mode_exp = $this->input->post('mode');
+		}	
+		if($selected_val !='')
+		{
+			$data_array = '';
+			if($mode_exp == 'delete')
+			{			
+				$data_array = array('is_deleted'=>'Yes');
+				$error_message = 'Notification deleted successfully.';
+			}
+			else if($mode_exp =='read' || $mode_exp =='unread')
+			{
+				if($mode_exp =='read')
+				{
+					$status_up ='Yes';
+				}
+				else
+				{
+					$status_up ='No';
+				}
+				$data_array = array('read_status'=>$status_up);
+				$error_message = 'Notification status updated successfully.';
+			}
+			if($data_array !='' && count($data_array) > 0)
+			{
+				if($selected_val !='' && !is_array($selected_val))
+				{
+					$selected_val = explode(',',$selected_val);
+				}
+				
+				$this->db->where_in('id', $selected_val);
+				$this->common_model->update_insert_data_common("notifications",$data_array,'',1,0);
+				$status = 'success';
+			}
+			else
+			{
+				$status = 'error';
+				$error_message = 'Sorry some error ocurred, please try again.';
+			}
+		}
+		else
+		{
+			$error_message = 'Please select atleast one record, try again';
+		}
+		
+		$data1['tocken'] = $this->security->get_csrf_hash();
+		$data1['status'] = $status;
+		$data1['error_meessage'] = $error_message;
+		$data1['errmessage'] = $error_message;
+		return $data1;
 	}
 }
 ?>
