@@ -1,0 +1,3 @@
+RewriteEngine on
+
+RewriteRule ^(.*\.(gif|jp?g|png))$ https://demoweblinks.in/matrimony-demo/assets/photos/watermark.php?image=$1 [NC] 
