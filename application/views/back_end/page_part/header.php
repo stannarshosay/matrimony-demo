@@ -58,7 +58,6 @@ $class_name = $this->router->fetch_class();
 
         <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/vendor/cropper/cropper.css" />
         
-        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/fancybox/css/jquery.fancybox.css" />
         
         <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/lightbox/css/lightbox.css" />
          
@@ -322,7 +321,7 @@ $class_name = $this->router->fetch_class();
 
                             <!--<li id="color_change"> <a href="<?php //echo $base_url.$admin_path.'/site-setting/color-change';?>"> <span>Site Color</span> </a> </li>-->
 
-                           <li id="app_link"> <a href="<?php echo $base_url.$admin_path.'/site-setting/app-link';?>"> <span>App Link</span> </a> </li>
+                           <!-- <li id="app_link"> <a href="<?php echo $base_url.$admin_path.'/site-setting/app-link';?>"> <span>App Link</span> </a> </li> -->
 
                            <li id="homepage_text"> <a href="<?php echo $base_url.$admin_path.'/site-setting/homepage-text';?>"> <span>Homepage Text</span> </a> </li>
 
@@ -331,12 +330,12 @@ $class_name = $this->router->fetch_class();
                                 <a href="<?php echo $base_url.$admin_path.'/site-setting/other_banner';?>"> <span>Homepage Banner & Text</span> </a> 
 
                             </li>
-
+<!-- 
                             <li id="reason_why_choose">
 
                                 <a href="<?php echo $base_url.$admin_path.'/site-setting/reason_why_choose/ALL/1/yes';?>"> <span>Reason Why Choose</span> </a> 
 
-                            </li>
+                            </li> -->
 
                            <!--<li id="generate_sitemap"> <a href="javascript:void(0);" onClick="return generate_sitemap();"> <span>Generate Sitemap</span> </a> </li>-->
 

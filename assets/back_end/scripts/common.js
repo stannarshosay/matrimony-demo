@@ -3791,10 +3791,7 @@ window.onload = function() {
 
     var profile_by = $("[name='profileby']").val();
 
-    console.log(profile_by);
-
-
-
+   
     var religion_status = $("[name='religion']").val();
 
 

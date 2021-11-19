@@ -628,19 +628,13 @@ function small_layout(){
 
 <script src="<?php echo $base_url; ?>assets/back_end/scripts/jquery.canvasCrop.js"></script>
 
-<script src="<?php echo $base_url; ?>assets/back_end/fancybox/js/jquery-1.10.2.min.js"></script>
-
-<script src="<?php echo $base_url; ?>assets/back_end/fancybox/js/jquery.fancybox.pack.js"></script>
-
 <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/lightbox.js"></script>
-
-<!--<script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/lightbox-plus-jquery.min.js"></script>-->
 
 <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/jquery.zbox.min.js"></script>
 
 <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/image-popup.js"></script>
 
-
+<!-- <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/lightbox-plus-jquery.min.js"></script> -->
   
 
 
