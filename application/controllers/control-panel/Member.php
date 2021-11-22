@@ -41,6 +41,7 @@ class Member extends CI_Controller {
 		$this->common_model->extra_js[] = 'vendor/jquery-validation/dist/additional-methods.min.js';
 
 		$this->common_model->extra_js[] = 'vendor/bootstrap-datepicker/js/bootstrap-datepicker.js';
+		
 
 		if($mode =='add-data' || $mode =='add')
 

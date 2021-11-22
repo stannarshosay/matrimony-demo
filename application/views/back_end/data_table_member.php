@@ -1178,11 +1178,8 @@ $contact_arr = array('address','city','phone','mobile','email','city_name');
 
                                             }?>
 
-                                            <a id="photo1" href="<?php echo $base_url.'assets/'.$avatar1; ?>" title="<?php echo $tool_tip_img; ?>" data-lightbox="<?php echo $avatar; ?>" class="zb"><img src="<?php echo $base_url.$avatar; ?>" alt="<?php echo $tool_tip_img; ?>" class="img-responsive lazyload fancybox-thumb "/></a>
+                                            <a id="photo1" href="<?php echo $base_url.'assets/'.$avatar1; ?>" title="<?php echo $tool_tip_img; ?>" data-lightbox="<?php echo $avatar; ?>" class="zb"><img src="<?php echo $base_url.$avatar; ?>" alt="<?php echo $tool_tip_img; ?>" class="img-responsive lazyload"/></a>
 
-                                            <!--<a id="<?php echo "photo".$i; ?>" href="<?php echo $base_url.'assets/'.$avatar1; ?>" title="<?php echo $tool_tip_img; ?>" data-lightbox="<?php echo $images; ?>"><img src="<?php echo $base_url.$avatar; ?>" alt="<?php echo $tool_tip_img; ?>" class="img-responsive lazyload fancybox-thumb"/ id="myImg"></a>-->
-
-                                            <!--<img data-src="<?php echo $base_url.$avatar; ?>" title="<?php echo $tool_tip_img; ?>" alt="<?php echo $tool_tip_img; ?>" class=" img-responsive lazyload" />-->
                                         <div class="row">
                                            <?php // sonu backend
                                             for($i=2;$i<=$this->photo_upload_count;$i++){
@@ -1197,8 +1194,8 @@ $contact_arr = array('address','city','phone','mobile','email','city_name');
                                                 ?>
                                                 
                                                     <div class="column">
-                                                <a id="<?php echo "photo".$i; ?>" class="light-thumbnail zb " href="<?php echo $base_url.'assets/'.$images1; ?>" title="<?php echo $images; ?>" data-lightbox="<?php echo $images; ?>"><img src="<?php echo $base_url.$images; ?>" alt="<?php echo $images; ?>" class="img-responsive lazyload fancybox "/></a>
-                                                <!--<img data-src="<?php //echo $base_url.$images; ?>" title="<?php //echo $images; ?>" alt="<?php //echo $images; ?>" class="img-responsive lazyload fancybox-thumb" id="<?php //echo "photo".$i; ?>" />-->
+                                                <a id="<?php echo "photo".$i; ?>" class="light-thumbnail zb " href="<?php echo $base_url.'assets/'.$images1; ?>" title="<?php echo $images; ?>" data-lightbox="<?php echo $images; ?>"><img src="<?php echo $base_url.$images; ?>" alt="<?php echo $images; ?>" class="img-responsive lazyload"/></a>
+
                                                 </div>
                                            <?php }
                                        }
@@ -1673,7 +1670,7 @@ setTimeout(function(){ $("#sucss_msg").slideUp(); $("#sucss_msg").html("");}, 10
 
 </script>
 <script>
-    $(document).ready(function(){
-        $(".zb").zbox( { margin:40 } );
-      });
+    // $(document).ready(function(){
+    //     $(".zb").zbox( { margin:40 } );
+    //   });
 </script>

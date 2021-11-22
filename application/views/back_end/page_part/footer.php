@@ -617,27 +617,25 @@ function small_layout(){
 	}
 
 ?>
-
+var isNeededCropper = document.getElementsByClassName('imageBox');
+if (isNeededCropper.length > 0) {
+    $.ajax({
+            url: "<?php echo $base_url; ?>assets/back_end/scripts/jquery.canvasCrop.js",
+            dataType: "script",
+            cache: true,
+            success: function() {
+                console.log("loaded cropper");
+            }
+    });
+}
 </script>
 
-<script src="<?php echo $base_url; ?>assets/back_end/vendor/cropper/cropper.min.js"></script>
-
-
-
-<script src="<?php echo $base_url; ?>assets/back_end/vendor/cropper/cropper.js"></script>
-
-<script src="<?php echo $base_url; ?>assets/back_end/scripts/jquery.canvasCrop.js"></script>
 
 <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/lightbox.js"></script>
 
 <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/jquery.zbox.min.js"></script>
 
 <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/image-popup.js"></script>
-
-<!-- <script src="<?php echo $base_url; ?>assets/back_end/lightbox/js/lightbox-plus-jquery.min.js"></script> -->
-  
-
-
 
 </body>
 

@@ -52,18 +52,11 @@ $class_name = $this->router->fetch_class();
 
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/styles/canvasCrop.css" />
 
-        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/styles/style.css" />
-
-        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/vendor/cropper/cropper.min.css" />
-
-        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/vendor/cropper/cropper.css" />
-        
+        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/styles/style.css" />        
         
         <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/lightbox/css/lightbox.css" />
          
-        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/lightbox/css/jquery.zbox.css" />
-        
-        
+        <link rel="stylesheet" href="<?php echo $base_url; ?>assets/back_end/lightbox/css/jquery.zbox.css" />      
          
 
 
