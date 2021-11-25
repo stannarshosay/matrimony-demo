@@ -932,15 +932,15 @@ $class_name = $this->router->fetch_class();
 
                             ?>
 
-                                <li class="approval" id="wedding_vendors_review">
+                                <!-- <li class="approval" id="wedding_vendors_review">
 
-                                    <a href="<?php echo $base_url.$admin_path.'/approval/wedding-vendors-review/ALL/1/yes';?>"> 
+                                    <a href="<?php //echo $base_url.$admin_path.'/approval/wedding-vendors-review/ALL/1/yes';?>"> 
 
                                         <span>Wedding Vendors Review</span>
 
                                     </a> 
 
-                                </li>
+                                </li> -->
 
                             <?php
 
@@ -970,11 +970,11 @@ $class_name = $this->router->fetch_class();
 
                             ?>
 
-                            <li class="approval" id="video">
+                           <!--  <li class="approval" id="video">
 
-                                <a href="<?php echo $base_url.$admin_path.'/approval/video/ALL/1/yes';?>"> <span>Video</span> </a> 
+                                <a href="<?php //echo $base_url.$admin_path.'/approval/video/ALL/1/yes';?>"> <span>Video</span> </a> 
 
-                            </li>
+                            </li> -->
 
                             <?php
 
@@ -988,11 +988,11 @@ $class_name = $this->router->fetch_class();
 
                             ?>
 
-                            <li class="approval" id="cover_photo">
+                            <!-- <li class="approval" id="cover_photo">
 
-                                <a href="<?php echo $base_url.$admin_path.'/approval/cover-photo/ALL/1/yes';?>"> <span>Cover Photo</span> </a> 
+                                <a href="<?php //echo $base_url.$admin_path.'/approval/cover-photo/ALL/1/yes';?>"> <span>Cover Photo</span> </a> 
 
-                            </li>
+                            </li> -->
 
                             <?php
 
