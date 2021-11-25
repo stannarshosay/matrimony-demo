@@ -1046,18 +1046,18 @@ $class_name = $this->router->fetch_class();
 
                         {
 
-                            $photo_upload_count = 8;
+                            $photo_upload_count = 5;
 
                         }
 
-                        if($photo_upload_count > 8){$photo_upload_count = 8;}
+                        if($photo_upload_count > 5){$photo_upload_count = 5;}
 
                         $filter_profile_perm = $this->common_model->check_permission('photo_approval');
 
                         for($iphoto = 1;$iphoto<= $photo_upload_count;$iphoto++)
 
                         {
-
+                            
                             if($filter_profile_perm !='No')
 
                             {
@@ -1066,7 +1066,7 @@ $class_name = $this->router->fetch_class();
 
                             <li class="approval" id="member_photo<?php echo $iphoto; ?>">
 
-                                <a href="<?php echo $base_url.$admin_path.'/approval/member-photo'.$iphoto.'/ALL/1/yes';?>"> <span>Photo <?php echo $iphoto; ?></span> </a> 
+                                <a href="<?php echo $base_url.$admin_path.'/approval/member-photo'.$iphoto.'/ALL/1/yes';?>"> <span> <?php echo $iphoto == 1?"Profile Pic":"Photo ".$iphoto; ?></span> </a> 
 
                             </li>
 

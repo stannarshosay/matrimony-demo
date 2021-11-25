@@ -474,7 +474,8 @@ $contact_arr = array('address','city','phone','mobile','email','city_name');
 
                 <?php if($this->common_model->change_interest=='yes'){
 
-                    $interest = array('New Register'=>'New Register','Green'=>'Green','Blue'=>'Blue','Orange'=>'Orange','Red'=>'Red','Final Client'=>'Final Client','Incoming Call'=>'Incoming Call')
+                   $interest = array('New Register'=>'New Register','Green'=>'Some Response','Blue'=>'Never Talked','Orange'=>'50-50','Red'=>'No Response','Final Client'=>'Final Client','Incoming Call'=>'Incoming Call')
+
 
                     ?>
 
