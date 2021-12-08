@@ -474,8 +474,10 @@ $contact_arr = array('address','city','phone','mobile','email','city_name');
 
                 <?php if($this->common_model->change_interest=='yes'){
 
-                   $interest = array('New Register'=>'New Register','Green'=>'Some Response','Blue'=>'Never Talked','Orange'=>'50-50','Red'=>'No Response','Final Client'=>'Final Client','Incoming Call'=>'Incoming Call')
-
+                  // $interest = array('New Register'=>'New Register','Green'=>'Some Response','Blue'=>'Never Talked','Orange'=>'50-50','Red'=>'No Response','Final Client'=>'Final Client','Incoming Call'=>'Incoming Call')
+                   //sonu change
+                   $interest = array('New Register'=>'Interest','Spoken'=>'Spoken','Not-Attend'=>'Not Attend','Later'=>'Later','Not-Interest'=>'Not Interest','Final Client'=>'Final Client','Incoming Call'=>'Incoming Call')
+                   //sonu change end
 
                     ?>
 
@@ -861,8 +863,7 @@ $contact_arr = array('address','city','phone','mobile','email','city_name');
 
                                     $pkey = $this->common_model->primary_key;
 
-                                    $arr = array('ALL'=>'All','Call'=>'Incoming Call','Final'=>'Approved Final','Green'=>'Some Response','Blue'=>'Never Talked','Orange'=>'50-50','Red'=>'No Response','New'=>'New Register');
-
+                                    $arr = array('ALL'=>'All','New'=>'Interest','Not-Interest'=>'Not Interest','Spoken'=>'Spoken','Not-Attend'=>'Not Attend','Later'=>'Later','Call'=>'Incoming Call','Final'=>'Approved Final');
                                     if(isset($arr) && count($arr) > 0){
 
                                         foreach($arr as $key=>$val){
@@ -885,7 +886,7 @@ $contact_arr = array('address','city','phone','mobile','email','city_name');
 
                                             else if($key == 'New'){
 
-                                                $where_arr = array('interest!='=>'','interest'=>'New Register');
+                                                $where_arr = array('interest!='=>'','interest'=>'Interest');
 
                                             }
 

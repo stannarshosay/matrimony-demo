@@ -36,9 +36,9 @@ class Lead_generation extends CI_Controller {
 
 		$this->common_model->status_arr_change = array();
 
-		// $this->common_model->staffassign_arr_change = array('Assign_Staff'=>'Assign Staff','Unassign_Staff'=>'Unassign Staff');
+		$this->common_model->staffassign_arr_change = array('Assign_Staff'=>'Assign Staff','Unassign_Staff'=>'Unassign Staff');
 
-		// $this->common_model->franchiseassign_arr_change = array('Assign_Franchise'=>'Assign Franchise','Unassign_Franchise'=>'Unassign Franchise');
+		$this->common_model->franchiseassign_arr_change = array('Assign_Franchise'=>'Assign Franchise','Unassign_Franchise'=>'Unassign Franchise');
 
 		if($clear_search =='yes')
 
