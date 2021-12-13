@@ -133,7 +133,10 @@ class Lead_generation_model extends CI_Model {
 
 			//'state_id'=>array('type'=>'dropdown','relation'=>array('rel_table'=>'state_master','key_val'=>'id','key_disp'=>'state_name','not_load_add'=>'yes','cus_rel_col_name'=>'country'),'label'=>'State','class'=>'select2','onchange'=>"dropdownChange('state_id','city','city_list')"),
 
-			'city'=>array('type'=>'dropdown','relation'=>array('rel_table'=>'city_master','key_val'=>'id','key_disp'=>'city_name','not_load_add'=>'yes','cus_rel_col_name'=>'state_id'),'label'=>'District/City','class'=>'select2'),
+			//'city'=>array('type'=>'dropdown','relation'=>array('rel_table'=>'city_master','key_val'=>'id','key_disp'=>'city','not_load_add'=>'yes','cus_rel_col_name'=>'state_id'),'label'=>'District/City','class'=>'select2'),
+
+			'city'=>array('is_required'=>'required','type'=>'dropdown','relation'=>array('rel_table'=>'city_master','key_val'=>'id','key_disp'=>'city_name')),
+
 
 			'address'=>array('type'=>'textarea'),
 
@@ -142,7 +145,10 @@ class Lead_generation_model extends CI_Model {
 
 			'about_client'=>array('label'=>'About Client','type'=>'textarea'),
 
-			'reference'=>array('class'=>'select2','label'=>'How did you get Information about the site? ','value_arr'=>$this->common_model->get_list_ddr('reference')),
+			// 'reference'=>array('class'=>'select2','label'=>'How did you get Information about the site? ','value_arr'=>$this->common_model->get_list_ddr('reference')),
+			'reference'=>array('type'=>'dropdown','class'=>'select2','value_arr'=>$this->common_model->get_list_ddr('reference')),
+
+			'next_followup_date'=>array('label'=>'Followup Date','input_type'=>'date'),
 
 			'interest'=>array('type'=>'dropdown','value_arr'=>array('Interest'=>'Interest','Spoken'=>'Spoken','Not-Attend'=>'Not Attend','Later'=>'Later','Not-Interest'=>'Not Interest','Final Client'=>'Final Client','Incoming Call'=>'Incoming Call')),
 
@@ -219,7 +225,7 @@ class Lead_generation_model extends CI_Model {
 
 			'disp_status'=>'no',
 
-			'disp_column_array'=> array('gender','email','address','age','country_name','state_name','phone_no_1','phone_no_2','reg_date','interest','assign_to_staff','assign_to_franchise','next_followup_date')
+			'disp_column_array'=> array('gender','email','address','age','country_name','occupation','work_place','phone_no_1','phone_no_2','reg_date','interest','assign_to_staff','assign_to_franchise','next_followup_date')
 
 		);
 
@@ -661,6 +667,8 @@ class Lead_generation_model extends CI_Model {
 			}
 
 		}
+
+		
 
 		
 

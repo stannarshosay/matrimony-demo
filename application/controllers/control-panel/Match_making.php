@@ -138,7 +138,7 @@ class Match_making extends CI_Controller {
 
 			$ele_array = array(
 
-				'match_send_date'=>array('is_required'=>'required','class'=>'datepicker'),
+				'match_send_date'=>array('is_required'=>'required','class'=>'datepicker','input_type'=>'date'),
 
 				'send_total_match'=>array('is_required'=>'required','label'=>'Send Total Match To User','type_num_alph'=>'num','other'=>'maxlength="2" min="1" max="99"'),
 

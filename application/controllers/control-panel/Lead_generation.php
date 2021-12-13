@@ -126,7 +126,7 @@ class Lead_generation extends CI_Controller {
 
 		}
 
-		$this->common_model->labelArr =  array('email'=>'Lead Email','next_followup_date'=>'Followup Date','assign_to_staff'=>'Staff Name','assign_to_franchise'=>'Franchise Name');
+		$this->common_model->labelArr =  array('email'=>'Lead Email','username'=>'Name','phone_no_1'=>'Contact No','phone_no_2'=>'Whatsapp No','next_followup_date'=>'Followup Date','assign_to_staff'=>'Staff Name','assign_to_franchise'=>'Franchise Name');
 
 		$other_config = array(
 
@@ -164,7 +164,7 @@ class Lead_generation extends CI_Controller {
 
 		$this->common_model->created_on_fild = 'next_followup_date';
 
-		$this->common_model->display_selected_field = array('interest','email','assign_to_staff','staff_email_id','assign_to_franchise','franchise_email_id','next_followup_date');
+		$this->common_model->display_selected_field = array('interest','email','username','phone_no_1','phone_no_2','assign_to_staff','staff_email_id','assign_to_franchise','franchise_email_id','next_followup_date');
 
 		$u_id = $this->common_model->get_session_data('id');
 
