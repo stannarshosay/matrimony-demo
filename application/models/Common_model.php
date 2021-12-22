@@ -3884,7 +3884,8 @@ class Common_model extends CI_Model {
 
 			}
 
-			if(isset($photo_number) && $photo_number != '' && $key == 'photo1'){
+			//if(isset($photo_number) && $photo_number != '' && $key == 'photo1'){
+				if(isset($photo_number) && $photo_number != '' ){
 
 				$return_content.='
 
