@@ -8,6 +8,8 @@ class Api extends CI_Controller {
 		$this->load->model('front_end/search_model');
 		$this->load->model('front_end/success_story_model');
 		$this->load->model('front_end/message_model');
+		$this->load->model('front_end/home_model');
+
 
 		// $this->base_url = base_url();
 		// $this->data['base_url'] = $this->base_url;
@@ -507,4 +509,66 @@ class Api extends CI_Controller {
 
 		}
 	}
+
+	function get_dashboard_count(){
+		$this->common_front_model->set_orgin();
+		$member_id = $this->common_front_model->get_session_data("matri_id");
+		$data1['status'] = 'error';
+		$data1['errmessage'] = 'Oops! Something went wrong';
+
+		if(!isset($member_id) || $member_id == ''){
+			$data1['status'] = 'error';
+		    $data1['errmessage'] = 'Oops! Session Timed Out';
+		}else{
+			$data1['errmessage'] = 'Counts Recieved';
+			$data1['status'] = 'success';
+			$data1['like_count'] = $this->common_model->get_count_data_manual('member_likes',array('my_id'=>$member_id,'like_status'=>'Yes'),0,'','','','','','');
+			$data1['shortlist_count'] = $this->common_model->get_count_data_manual('shortlist',array('shortlist.is_deleted'=>'No','shortlist.from_id'=>$member_id),0,'');
+			$data1['block_count'] = $this->common_model->get_count_data_manual('block_profile',array('is_deleted'=>'No','block_by'=>$member_id),0,'');
+			$data1['interest_count'] = $this->common_model->get_count_data_manual('expressinterest',array("is_deleted"=>'No',"(sender = '".$member_id."' OR receiver = '".$member_id."')"),0,'','',0);
+		
+		}
+		
+		$data['data'] = json_encode($data1);
+
+		$this->load->view('common_file_echo',$data);
+	
+	}
+
+	public function get_homepage_banner($page = 1){
+		
+		$this->common_front_model->set_orgin();
+
+		$homepage_banners = $this->home_model->get_homepage_banner_list($page);
+
+		$data1['tocken'] = $this->security->get_csrf_hash();
+
+		$data1['status'] = 'success';
+
+		if(isset($homepage_banners) && $homepage_banners!='')
+
+		{
+
+			$data1['errmessage'] = 'Banners recieved successfully';	
+
+			$data1['data'] = $homepage_banners;
+
+		}
+
+		else
+
+		{
+			$data1['status'] = 'error';
+
+			$data1['data'] = '';
+
+			$data1['errormessage'] = 'No data available';
+		}
+
+		$data['data'] = json_encode($data1);
+
+		$this->load->view('common_file_echo',$data);
+
+	}
+           
 }

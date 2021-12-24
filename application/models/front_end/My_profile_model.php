@@ -22,8 +22,6 @@ class My_profile_model extends CI_Model {
 
 		$member_id = $this->common_front_model->get_session_data("id");
         
-		log_message("info",">>>>>>>>>>>>>>>>>>>>>>>>".$member_id);
-
 		$data1['tocken'] = $this->security->get_csrf_hash();
 
 		$data1['status'] = 'error';

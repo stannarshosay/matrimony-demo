@@ -3766,7 +3766,9 @@ class Search_model extends CI_Model {
 
 		if($user_agent == 'NI-AAPP'){
 
-			$my_id = $this->input->post('matri_id');
+			// $my_id = $this->input->post('matri_id');
+			$my_id = $this->common_front_model->get_session_data('matri_id');
+
 
 		}else{
 
@@ -3785,6 +3787,7 @@ class Search_model extends CI_Model {
 		
 
 		if($my_id != '' && $from_id != ''){
+			
 
 			$where_array = array('current_plan'=>'Yes','matri_id'=>$my_id);
 
@@ -3850,6 +3853,8 @@ class Search_model extends CI_Model {
 
 					$email = $member_data['email'];
 
+					$whatsapp_number = $member_data['whatsapp_number'];
+
 					$time_to_call = $member_data['time_to_call'];					
 
 					if($member_data['contact_view_security'] == 1){
@@ -3864,7 +3869,7 @@ class Search_model extends CI_Model {
 
 						}else{
 
-							$data["contact_details"] = array("matri_id"=>$matri_id,"username"=>$username,"mobile"=>$mobile,"email"=>$email,"time_to_call"=>$time_to_call,"image"=>$image);
+							$data["contact_details"] = array("matri_id"=>$matri_id,"username"=>$username,"whatsapp_number"=>$whatsapp_number,"mobile"=>$mobile,"email"=>$email,"time_to_call"=>$time_to_call,"image"=>$image);
 
 							$data['success'] = 'success';
 

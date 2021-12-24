@@ -7370,6 +7370,11 @@ class Common_model extends CI_Model {
 	function update_plan_member($js_id='',$plan_id='')
 
 	{
+		if($this->input->post('plan_status')){
+
+			$plan_status_recieved = $this->input->post('plan_status');
+
+		}
 
 		$return_resp = 'fail';
 

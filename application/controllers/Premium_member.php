@@ -266,13 +266,23 @@ class Premium_member extends CI_Controller {
 
 		$user_id = $in_app_purchase = $pay_gateway= '';
 
-		if($this->input->post('user_id')){
+		$user_id = $this->common_front_model->get_session_data("id");
 
-			$user_id = $this->input->post('user_id');
 
-		}else{
+		if(!isset($user_id) || $user_id == ''){
+
 			$user_id = $this->session->userdata('recent_reg_id');
+
 		}
+
+		// if($this->input->post('user_id')){
+
+		// 	$user_id = $this->input->post('user_id');
+
+		// }else{
+		// 	$user_id = $this->common_front_model->get_session_data("id");
+
+		// }
 
 		// if($this->input->post('in_app_product_id')){
 

@@ -114,11 +114,11 @@ class Home extends CI_Controller {
 
 		}
 
-// 		$this->common_model->front_load_header('','',$seo_title,$seo_description,$seo_keywords,$og_title,$og_description,$og_image);
+		// $this->common_model->front_load_header('','',$seo_title,$seo_description,$seo_keywords,$og_title,$og_description,$og_image);
 
-// 		$this->load->view('front_end/home');
+		// $this->load->view('front_end/home');
 
-// 		$this->common_model->front_load_footer();
+		// $this->common_model->front_load_footer();
 
 	}
 
